@@ -4,6 +4,7 @@ import './App.css';
 import { async } from 'q';
 import { Route, Switch } from 'react-router-dom';
 import Register from './Register';
+import Profile from './Profile';
 
 const my404 = () => {
   return (
@@ -23,7 +24,7 @@ class App extends Component {
 
   register = async (data) => {
     try {
-      const registerResponse = await fetch(`http://localhost:5000/user/register`, {
+      const registerResponse = await fetch(`http://localhost:8000/user/register`, {
         method: 'POST',
         credentials: 'include',
         body: data,
@@ -51,6 +52,7 @@ class App extends Component {
       <main>
         <Switch>
           <Route exact path="/register" render={(props) => <Register {...props} register={this.register}/> } />
+          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route component={my404} />
         </Switch>
       </main>
