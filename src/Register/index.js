@@ -30,7 +30,7 @@ class Register extends Component {
 
     console.log(data.entries(), '<-- data from register form');
     for (let pair of data.entries()) {
-      console.log(pair[0] ,', ', pair[1])
+      console.log(pair[0], ', ', pair[1])
     }
 
     const registerCall = this.props.register(data);
