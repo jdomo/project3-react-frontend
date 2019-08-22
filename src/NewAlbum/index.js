@@ -4,54 +4,44 @@ import { Link } from 'react-router-dom';
 
 class NewAlbum extends Component {
   state = {
-    currentUser: {
-      username: '',
-      logged: false,
-    },
     artist: '',
     title: '',
-    image: {},
-    createdBy: '',
+    image: '',
   }
 
   handleChange = (e) => {
-    if (e.target.name !== 'image') {
-      this.setState({[e.target.name]: e.target.value});
-    } else {
-      console.log(e.target.files[0], '<--- uploaded album cover')
-      this.setState({image: e.target.files[0]})
-    }
+    this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const albumData = new FormData();
-
-    albumData.append('artist', this.state.artist);
-    albumData.append('title', this.state.title);
-    albumData.append('image', this.state.image);
-    albumData.append('createdBy', this.state.createdBy);
-
-    console.log(albumData.entries(), '<-- albumData from CreateAlbum');
-
-    const createCall = this.props.createNew(albumData);
-
-    createCall.then(albumData => {
-      console.log(albumData, '<--albumData from CreateAlbum')
+    const createResponse = await fetch('http://localhost:8000/api/', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(this.state),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
+
+    const parsedResponse = await createResponse.json();
+    console.log(parsedResponse);
+
   }
 
   render() {
     console.log(this.state, '<--this.state in CreateAlbum component')
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          Add New WWAC
-          <input type='text' name='artist' placeholder='artist' onChange={this.handleChange} />
-          <input type='text' name='title' placeholder='title' onChange={this.handleChange} />
-          <input type='text' name='wwac' placeholder='artist' onChange={this.handleChange} />
-          <input type='submit'/>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Segment stacked>
+            Add New WWAC
+            <Form.Input type='text' name='artist' placeholder='artist' onChange={this.handleChange} value={this.state.artist}/>
+            <Form.Input type='text' name='title' placeholder='title' onChange={this.handleChange} value={this.state.title} />
+            <Form.Input type='text' name='image' placeholder='image URL' onChange={this.handleChange} value={this.state.image} />
+            <Button type='submit'>Submit</Button>
+          </Segment>
+        </Form>
       </div>
     )
   }

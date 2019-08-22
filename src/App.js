@@ -7,6 +7,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import NewAlbum from './NewAlbum'
+import Album from './ShowAlbum'
 
 const my404 = () => {
   return (
@@ -78,11 +79,6 @@ class App extends Component {
     }
   }
 
-  createNew = async (albumData) => {
-    console.log(albumData, '<-- from createNew');
-  }
-
-
   render() {
     return (
       <main>
@@ -91,6 +87,7 @@ class App extends Component {
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
           <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route exact path="/new" render={(props) => <NewAlbum {...props} createNew={this.createNew} /> } />
+          <Route exact path="/albums/:id" render={(props) => <Album {...props} /> } />
           <Route component={my404} />
         </Switch>
       </main>
