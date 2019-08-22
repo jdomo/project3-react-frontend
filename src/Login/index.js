@@ -3,7 +3,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import { Link } from 'react-router-dom';
 class Login extends Component {
   state = {
-      email: '',
+      username: '',
       password: ''
   }
   handleChange = (e) => {
@@ -36,10 +36,10 @@ class Login extends Component {
           </Header>
           <Form onSubmit={this.handleSubmit}>
               <Segment stacked>
-              Email:
-              <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
-              password:
-              <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
+              Username:
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
+              Password:
+              <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='submit'>Login</Button>
               <Message>
                 Not a member? <Link to='/register'>Register</Link>
