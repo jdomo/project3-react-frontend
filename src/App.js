@@ -25,13 +25,13 @@ class App extends Component {
 
   logIn = async (loginInfo) => {
     try {
-
-      const loginResponse = await fetch('http://localhost:8000/user/login', {   //"options"
-        method: 'POST',                                                 //default to 'GET' without options
-        credentials: 'include',// on every request we have to send the cookie
-        body: JSON.stringify(loginInfo),      //like req.body
+      console.log('from logIn')
+      const loginResponse = await fetch('http://localhost:8000/user/login', {
+        method: 'POST',                                                 
+        credentials: 'include',
+        body: JSON.stringify(loginInfo),  
         headers: {
-          'Content-Type': 'application/json'    //telling server about info being sent
+          'Content-Type': 'application/json'
         }
       })
 
