@@ -37,7 +37,6 @@ class Register extends Component {
 
     registerCall.then((data) => {
       console.log(data);
-      debugger
       if (data.status.message === "Great Success"){
         this.props.history.push('/profile')
       } else {

@@ -30,7 +30,7 @@ class Profile extends Component {
           </Grid.Column>
           <Grid.Column width={8}>
             <Header as='h2' textAlign='center'>
-              {this.props.userInfo.username}'s Dogs
+              {this.props.userInfo.username}'s Albums
             </Header>
           </Grid.Column>
         </Grid.Row>
