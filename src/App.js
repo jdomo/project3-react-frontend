@@ -7,7 +7,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from './Profile';
 import AlbumContainer from './AlbumContainer'
-// import NewAlbum from './NewAlbum'
+import NewAlbum from './NewAlbum'
 // import Album from './ShowAlbum'
 
 const my404 = () => {
@@ -88,9 +88,9 @@ class App extends Component {
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
           <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route exact path="/" component={AlbumContainer}/>
-          {/* <Route exact path="/albums" render={(props) => <AllAlbums {...props} /> } />
-          <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
-          <Route exact path="/albums/:id" render={(props) => <Album {...props} /> } /> */}
+          {/* <Route exact path="/albums" render={(props) => <AllAlbums {...props} /> } /> */}
+          <Route exact path="/new" render={(props) => <NewAlbum {...props} /> } />
+          {/* <Route exact path="/albums/:id" render={(props) => <Album {...props} /> } /> */}
           <Route component={my404} />
         </Switch>
       </main>

@@ -33,11 +33,38 @@ class AlbumContainer extends Component {
       console.log(err, '<-- err in getAlbums');
     }
   }
+
+  deleteAlbum = async (album) => {
+    const deleteRequest = await fetch('http://localhost:8000/api/' + album.id, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+
+    console.log(deleteRequest, '<-- deleteRequest fetch in deleteAlbum');
+
+    if (deleteRequest.status !== 200) {
+      throw Error('delete request error');
+    }
+
+    const deleteResponse = await deleteRequest.json();
+
+    console.log(deleteResponse, '<-- deleteResponse in deleteAlbum')
+
+    const truncatedAlbumList = this.state.albums.filter(item => deleteResponse.data.id !== item.id)
+
+    console.log(truncatedAlbumList, '<-- truncatedAlbumList');
+
+    this.setState({
+      albums: truncatedAlbumList
+    })
+
+    console.log(this.state.albums, '<-- state.albums after delete')
+  }
   
   render() {
     return (
       <div>
-        <AllAlbums albums={this.state.albums} />
+        <AllAlbums albums={this.state.albums} delete={this.deleteAlbum}/>
       </div>
     )
   }
