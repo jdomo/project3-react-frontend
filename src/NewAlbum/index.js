@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { thisExpression } from '@babel/types';
 
 class NewAlbum extends Component {
   state = {
     artist: '',
     title: '',
     image: '',
+    submitted: false
   }
 
   handleChange = (e) => {
@@ -15,6 +17,11 @@ class NewAlbum extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    // this.props.history.push('/albums') //bad practice
+
+    this.setState({
+      submitted: true
+    })
     const createResponse = await fetch('http://localhost:8000/api/', {
       method: 'POST',
       credentials: 'include',
@@ -33,6 +40,11 @@ class NewAlbum extends Component {
     console.log(this.state, '<--this.state in CreateAlbum component')
     return (
       <div>
+        {
+          this.state.submitted
+            ? <Redirect to='/albums' />
+            : null
+        }
         <Form onSubmit={this.handleSubmit}>
           <Segment stacked>
             Add New WWAC
