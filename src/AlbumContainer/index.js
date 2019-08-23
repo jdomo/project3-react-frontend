@@ -45,13 +45,10 @@ class AlbumContainer extends Component {
     if (deleteRequest.status !== 200) {
       throw Error('delete request error');
     }
-
     const deleteResponse = await deleteRequest.json();
-
     console.log(deleteResponse, '<-- deleteResponse in deleteAlbum')
 
     const truncatedAlbumList = this.state.albums.filter(item => deleteResponse.data.id !== item.id)
-
     console.log(truncatedAlbumList, '<-- truncatedAlbumList');
 
     this.setState({

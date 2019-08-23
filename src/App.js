@@ -84,12 +84,12 @@ class App extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path="/register" render={(props) => <Register {...props} register={this.register}/> } />
+          <Route exact path="/" render={(props) => <Register {...props} register={this.register}/> } />
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
           <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
-          <Route exact path="/" component={AlbumContainer}/>
+          <Route exact path="/albums" component={AlbumContainer}/>
           {/* <Route exact path="/albums" render={(props) => <AllAlbums {...props} /> } /> */}
-          <Route exact path="/new" render={(props) => <NewAlbum {...props} /> } />
+          <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
           {/* <Route exact path="/albums/:id" render={(props) => <Album {...props} /> } /> */}
           <Route component={my404} />
         </Switch>

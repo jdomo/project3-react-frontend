@@ -42,7 +42,7 @@ class Login extends Component {
               <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='submit'>Login</Button>
               <Message>
-                Not a member? <Link to='/register'>Register</Link>
+                Not a member? <Link to='/'>Register</Link>
               </Message>
             </Segment>
           </Form>

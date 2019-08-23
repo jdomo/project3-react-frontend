@@ -12,10 +12,11 @@ const AllAlbums = (props) => {
           </span>
         </li>
       )
-  })
-
-  return (
-    <div>
+    })
+    
+    return (
+      <div>
+      <a href="/new">add a WWAC</a>
       {albumList}
     </div>
   )
