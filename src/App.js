@@ -8,7 +8,7 @@ import Login from './Login';
 import Profile from './Profile';
 import AlbumContainer from './AlbumContainer'
 import NewAlbum from './NewAlbum'
-// import Album from './ShowAlbum'
+import ShowAlbum from './ShowAlbum'
 
 const my404 = () => {
   return (
@@ -24,6 +24,7 @@ class App extends Component {
     username: '',
     email: '',
     loading: true,
+    album: {}
   }
 
   logIn = async (loginInfo) => {
@@ -80,6 +81,20 @@ class App extends Component {
     }
   }
 
+  // getAlbum = async (album) => {
+  //   try {
+  //     const showResponse = await fetch(`http://localhost:8000/api/${album.id}`)
+  //     const parsedResponse = await showResponse.json();
+
+  //     console.log(parsedResponse, '<-- parsedResponse in getAlbum')
+
+  //   } catch (err) {
+  //     console.log(err, '<--- err from getAlbum, App.js')
+  //   }
+  // }
+
+  album = this.getAlbum
+
   render() {
     return (
       <main>
@@ -88,9 +103,8 @@ class App extends Component {
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
           <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route exact path="/albums" component={AlbumContainer}/>
-          {/* <Route exact path="/albums" render={(props) => <AllAlbums {...props} /> } /> */}
           <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
-          {/* <Route exact path="/albums/:id" render={(props) => <Album {...props} /> } /> */}
+          <Route exact path="/albums/:id" component={ShowAlbum} />
           <Route component={my404} />
         </Switch>
       </main>
