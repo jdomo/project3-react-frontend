@@ -6,8 +6,16 @@ class Profile extends Component {
      id: 1,
      email: '',
      image: '',
-     username: ''
-    }
+     username: '',
+     albums: []
+  }
+
+  componentDidMount() {
+    console.log(this.props, '<-- props in profile')
+    this.props.getUserAlbums();
+
+  }
+
   render(){
     console.log(this.state, this.props.userInfo, 'in profile< props')
 
@@ -20,7 +28,7 @@ class Profile extends Component {
               'Loading.....' :
 
               <Card
-                image={'http://localhost:8000/profile_pics/' + this.props.userInfo.image}
+                image={`http://localhost:8000/profile_pics/${this.props.userInfo.image}`}
                 header={this.props.username}
                 meta={this.props.email}
                 description='green eggs and ham'

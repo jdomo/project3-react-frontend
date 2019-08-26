@@ -25,16 +25,15 @@ class App extends Component {
     username: '',
     email: '',
     loading: true,
-    album: {}
   }
 
   componentDidMount(){
     const user = JSON.parse(localStorage.getItem("user"))
+    console.log(user, '<-- user in App componentDidMount')
     if(user){
       this.setState({
         ...user,
         loading: false,
-        album:{}
       })
     }
   }
@@ -94,13 +93,45 @@ class App extends Component {
     }
   }
 
+  getUserAlbums = async () => {
+    try {
+      const getAlbums = await fetch('http://localhost:8000/api/');
+      console.log(getAlbums, '<-- albums response in getAlbums')
+
+      if (getAlbums.status !== 200) {
+        throw Error('server 404, error!!!')
+      }
+
+      const albumsResponse = await getAlbums.json();
+      console.log(albumsResponse, '<-- albumsResponse')
+
+      const user = JSON.parse(localStorage.getItem("user"))
+      console.log(user, '<-- user in getUserAlbums')
+
+      const userAlbums = albumsResponse.data.filter(item => 
+        item.created_by.id == user.id
+      )
+
+      console.log(userAlbums, '<---userAlbums')
+
+      this.setState({
+        albums: [...albumsResponse.data]
+      })
+
+      console.log(this.state.albums, '<--- albums in user profile state')
+
+    } catch (err) {
+      console.log(err, '<-- err in getAlbums');
+    }
+  }
+
   render() {
     return (
       <main>
         <Switch>
           <Route exact path="/" render={(props) => <Register {...props} register={this.register}/> } />
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
-          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
+          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state} getUserAlbums={this.getUserAlbums}/> } />
           <Route exact path="/albums" component={AlbumContainer}/>
           <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
           <Route exact path="/albums/:id/edit" render={(props) => <EditAlbum {...props} /> } />

@@ -35,7 +35,7 @@ class AlbumContainer extends Component {
   }
 
   deleteAlbum = async (album) => {
-    const deleteRequest = await fetch('http://localhost:8000/api/' + album.id, {
+    const deleteRequest = await fetch(`http://localhost:8000/api/${album.id}`, {
       method: 'DELETE',
       credentials: 'include'
     })
