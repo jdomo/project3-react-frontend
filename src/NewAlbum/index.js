@@ -22,7 +22,7 @@ class NewAlbum extends Component {
     this.setState({
       submitted: true
     })
-    const createResponse = await fetch('http://localhost:8000/api/', {
+    const createResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(this.state),

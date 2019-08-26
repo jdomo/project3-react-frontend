@@ -13,7 +13,7 @@ class AlbumContainer extends Component {
 
   getAlbums = async () => {
     try {
-      const getAlbums = await fetch('http://localhost:8000/api/');
+      const getAlbums = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`);
       console.log(getAlbums, '<-- albums response in getAlbums')
 
       if (getAlbums.status !== 200) {
@@ -35,7 +35,7 @@ class AlbumContainer extends Component {
   }
 
   deleteAlbum = async (album) => {
-    const deleteRequest = await fetch(`http://localhost:8000/api/${album.id}`, {
+    const deleteRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${album.id}`, {
       method: 'DELETE',
       credentials: 'include'
     })

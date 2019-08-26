@@ -7,7 +7,7 @@ class ShowAlbum extends Component {
 
   getAlbum = async (albumID) => {
     try {
-      const showResponse = await fetch('http://localhost:8000/api/' + albumID)
+      const showResponse = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/' + albumID)
       const parsedResponse = await showResponse.json();
 
       console.log(parsedResponse, '<-- parsedResponse in getAlbum')

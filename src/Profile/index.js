@@ -28,7 +28,7 @@ class Profile extends Component {
               'Loading.....' :
 
               <Card
-                image={`http://localhost:8000/profile_pics/${this.props.userInfo.image}`}
+                image={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`}
                 header={this.props.username}
                 meta={this.props.email}
                 description='green eggs and ham'
