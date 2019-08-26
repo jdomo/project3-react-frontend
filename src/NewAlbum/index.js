@@ -42,7 +42,7 @@ class NewAlbum extends Component {
       <div>
         {
           this.state.submitted
-            ? <Redirect to='/'/>
+            ? <Redirect to='/albums'/>
             : null
         }
         <Form onSubmit={this.handleSubmit}>

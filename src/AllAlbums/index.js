@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
 const AllAlbums = (props) => {
 
@@ -8,7 +9,7 @@ const AllAlbums = (props) => {
         <span>
           <a href={`/albums/${album.id}`}><img src={`${album.image}`} alt='album_cover'/></a>
           <button onClick={()=> props.delete(album)}>Delete</button>
-          <button onClick={()=> props.showModal.bind(null, album)}>Edit</button>
+          <a href={`/albums/${album.id}/edit`}>Edit</a>
         </span>
       </li>
     )

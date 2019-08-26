@@ -9,6 +9,7 @@ import Profile from './Profile';
 import AlbumContainer from './AlbumContainer'
 import NewAlbum from './NewAlbum'
 import ShowAlbum from './ShowAlbum'
+import EditAlbum from './EditAlbum'
 
 const my404 = () => {
   return (
@@ -104,6 +105,7 @@ class App extends Component {
           <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route exact path="/albums" component={AlbumContainer}/>
           <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
+          <Route exact path="/albums/:id/edit" render={(props) => <EditAlbum {...props} /> } />
           <Route exact path="/albums/:id" component={ShowAlbum} />
           <Route component={my404} />
         </Switch>
