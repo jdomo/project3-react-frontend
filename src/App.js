@@ -28,6 +28,17 @@ class App extends Component {
     album: {}
   }
 
+  componentDidMount(){
+    const user = JSON.parse(localStorage.getItem("user"))
+    if(user){
+      this.setState({
+        ...user,
+        loading: false,
+        album:{}
+      })
+    }
+  }
+
   logIn = async (loginInfo) => {
     try {
       console.log('from logIn')
@@ -41,6 +52,7 @@ class App extends Component {
       })
 
       const parsedResponse = await loginResponse.json();
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
 
 
       this.setState(() => {
@@ -70,7 +82,7 @@ class App extends Component {
 
       const parsedResponse = await registerResponse.json();
       console.log(parsedResponse, '<-- parsedResponse in register, App.js');
-
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       this.setState({
         ...parsedResponse.data,
         loading: false
@@ -81,20 +93,6 @@ class App extends Component {
       console.log(err, '<--- err from register, App.js');
     }
   }
-
-  // getAlbum = async (album) => {
-  //   try {
-  //     const showResponse = await fetch(`http://localhost:8000/api/${album.id}`)
-  //     const parsedResponse = await showResponse.json();
-
-  //     console.log(parsedResponse, '<-- parsedResponse in getAlbum')
-
-  //   } catch (err) {
-  //     console.log(err, '<--- err from getAlbum, App.js')
-  //   }
-  // }
-
-  album = this.getAlbum
 
   render() {
     return (
