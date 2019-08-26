@@ -13,12 +13,18 @@ class Profile extends Component {
   componentDidMount() {
     console.log(this.props, '<-- props in profile')
     this.props.getUserAlbums();
-
+    console.log(this.state.albums, '<-- albums in state for user profile')
+    this.albumList = this.state.albums.map(item => {
+      return (
+        <img src={`${item.image}`} alt="album-cover"/>
+      )
+    })
   }
 
-  render(){
-    console.log(this.state, this.props.userInfo, 'in profile< props')
+  albumList = []
 
+  render(){
+    console.log(this.albumList, '<-- albumList')
     return (
       <Grid columns={2} padded style={{ height: '100vh'}}>
         <Grid.Row>
@@ -40,6 +46,7 @@ class Profile extends Component {
             <Header as='h2' textAlign='center'>
               {this.props.userInfo.username}'s Albums
             </Header>
+            {this.albumList}
           </Grid.Column>
         </Grid.Row>
       </Grid>

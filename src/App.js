@@ -11,6 +11,7 @@ import NewAlbum from './NewAlbum'
 import ShowAlbum from './ShowAlbum'
 import EditAlbum from './EditAlbum'
 
+console.log(process.env)
 const my404 = () => {
   return (
     <div>
@@ -25,6 +26,7 @@ class App extends Component {
     username: '',
     email: '',
     loading: true,
+    albums: []
   }
 
   componentDidMount(){
@@ -96,26 +98,23 @@ class App extends Component {
   getUserAlbums = async () => {
     try {
       const getAlbums = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`);
-      console.log(getAlbums, '<-- albums response in getAlbums')
 
       if (getAlbums.status !== 200) {
         throw Error('server 404, error!!!')
       }
 
       const albumsResponse = await getAlbums.json();
-      console.log(albumsResponse, '<-- albumsResponse')
 
       const user = JSON.parse(localStorage.getItem("user"))
-      console.log(user, '<-- user in getUserAlbums')
 
       const userAlbums = albumsResponse.data.filter(item => 
-        item.created_by.id == user.id
+        item.created_by.id === user.id
       )
 
       console.log(userAlbums, '<---userAlbums')
 
       this.setState({
-        albums: [...albumsResponse.data]
+        albums: [...userAlbums]
       })
 
       console.log(this.state.albums, '<--- albums in user profile state')
