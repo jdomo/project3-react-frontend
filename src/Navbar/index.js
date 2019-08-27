@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
   return (
-    <nav class="navbar">
+    <nav className="navbar">
       <div class="left">
       <a href='/albums'><span id="home-link">WWAC</span></a>
       </div>

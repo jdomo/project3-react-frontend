@@ -24,7 +24,7 @@ const AllAlbums = (props) => {
   return (
     <div>
       <Navbar />
-      <header>
+      <header id="wwac-header">
         World's Worst Album Covers
       </header>
       <div class="main">
