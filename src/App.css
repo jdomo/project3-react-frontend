@@ -34,6 +34,7 @@ nav {
 
 ul {
   list-style: none;
+  padding-inline-start: 0
 }
 
 header {
@@ -118,7 +119,7 @@ a:hover {
 }
 
 .middle {
-  flex: 1;
+  flex: 2;
   text-align: center;
 }
 

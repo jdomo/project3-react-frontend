@@ -7,7 +7,7 @@ class AlbumContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('hi from AllAlbums in componentDidMount')
+    console.log(localStorage, '<-- localStorage')
     this.getAlbums()
   }
 

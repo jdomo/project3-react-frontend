@@ -107,7 +107,7 @@ class App extends Component {
 
       const albumsResponse = await getAlbums.json();
 
-      // const user = JSON.parse(localStorage.getItem("user"))
+      const user = JSON.parse(localStorage.getItem("user"))
 
       const userAlbums = albumsResponse.data.filter(item => 
         item.created_by.id === this.state.id

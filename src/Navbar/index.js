@@ -13,7 +13,7 @@ const Navbar = () => {
         <ul class="nav-links">
           <li class="nav-item"><a href='/albums/new'>Add new</a></li>
           <li class="nav-item"><a href='/profile'>My Profile</a></li>
-          <li class="nav-item"><a href='/'>Register</a></li>
+          <li class="nav-item"><a href='/login'>Login</a></li>
         </ul>
       </div>
       <div class="right">

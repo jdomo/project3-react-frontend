@@ -9,7 +9,7 @@ const Profile = (props) => {
   const albumList = props.userInfo.albums.map(item => {
     return (
     <div class="box">
-      <img src={`${item.image}`}/>
+      <img src={`${item.image}`} alt='album cover'/>
     </div>
     )
   })
