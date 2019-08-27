@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidMount(){
     const user = JSON.parse(localStorage.getItem("user"))
-    if(user){
+    if(user.id){
       this.setState({
         ...user,
         loading: false,
@@ -58,10 +58,12 @@ class App extends Component {
       this.setState(() => {
         return {
           ...parsedResponse.data,
-          loading: false
+          loading: false,
+          albums: []
         }
       })
 
+      this.getUserAlbums();
       return parsedResponse
 
     } catch (err) {
@@ -84,7 +86,8 @@ class App extends Component {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       this.setState({
         ...parsedResponse.data,
-        loading: false
+        loading: false,
+        albums: []
       })
 
       return parsedResponse;
