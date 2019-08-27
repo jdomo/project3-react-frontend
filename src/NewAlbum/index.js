@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 import { thisExpression } from '@babel/types';
+import Navbar from '../Navbar'
+import '../App.css'
 
 class NewAlbum extends Component {
   state = {
@@ -40,6 +42,7 @@ class NewAlbum extends Component {
     console.log(this.state, '<--this.state in CreateAlbum component')
     return (
       <div>
+        <Navbar/>
         {
           this.state.submitted
             ? <Redirect to='/albums'/>

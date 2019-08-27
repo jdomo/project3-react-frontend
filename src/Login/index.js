@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import '../App.css';
+import Navbar from '../Navbar'
+
 class Login extends Component {
   state = {
       username: '',

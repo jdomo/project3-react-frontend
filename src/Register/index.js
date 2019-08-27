@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar'
 
 class Register extends Component { 
   state = {
@@ -47,29 +48,32 @@ class Register extends Component {
 
   render() {
     return (
-      <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
-        <Grid.Column style={{maxWidth: 450}}>
-          <Header as='h2' textAlign='center'>
-            Register
-          </Header>
-          <Form onSubmit={this.handleSubmit}>
-              <Segment stacked>
-              Username:
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
-              Email:
-              <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
-              password:
-              <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
-              image:
-              <Form.Input fluid icon='image' iconPosition='left' type='file' name='image' onChange={this.handleChange}/>
-              <Button fluid size='large' type='sumbit'>Register</Button>
-              <Message>
-                Already a member? <Link to='/login'>Login</Link>
-              </Message>
-            </Segment>
-          </Form>
-        </Grid.Column>
-      </Grid>
+      <div>
+        <Navbar />
+        <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
+          <Grid.Column style={{maxWidth: 450}}>
+            <Header as='h2' textAlign='center'>
+              Register
+            </Header>
+            <Form onSubmit={this.handleSubmit}>
+                <Segment stacked>
+                Username:
+                <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
+                Email:
+                <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
+                password:
+                <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
+                image:
+                <Form.Input fluid icon='image' iconPosition='left' type='file' name='image' onChange={this.handleChange}/>
+                <Button fluid size='large' type='sumbit'>Register</Button>
+                <Message>
+                  Already a member? <Link to='/login'>Login</Link>
+                </Message>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
+      </div>
     )
   }
 }

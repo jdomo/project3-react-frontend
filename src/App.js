@@ -38,6 +38,8 @@ class App extends Component {
         loading: false,
       })
     }
+    this.getUserAlbums();
+    console.log('getUserAlbums done')
   }
 
   logIn = async (loginInfo) => {
@@ -105,19 +107,17 @@ class App extends Component {
 
       const albumsResponse = await getAlbums.json();
 
-      const user = JSON.parse(localStorage.getItem("user"))
+      // const user = JSON.parse(localStorage.getItem("user"))
 
       const userAlbums = albumsResponse.data.filter(item => 
-        item.created_by.id === user.id
+        item.created_by.id === this.state.id
       )
-
-      console.log(userAlbums, '<---userAlbums')
 
       this.setState({
         albums: [...userAlbums]
       })
 
-      console.log(this.state.albums, '<--- albums in user profile state')
+      console.log(this.state.albums, '<--- albums in App.js state')
 
     } catch (err) {
       console.log(err, '<-- err in getAlbums');
@@ -125,12 +125,13 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state, '<-- state in App.js')
     return (
       <main>
         <Switch>
           <Route exact path="/" render={(props) => <Register {...props} register={this.register}/> } />
           <Route exact path="/login" render={(props) => <Login {...props} logIn={this.logIn}/> } />
-          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state} getUserAlbums={this.getUserAlbums}/> } />
+          <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
           <Route exact path="/albums" component={AlbumContainer}/>
           <Route exact path="/albums/new" render={(props) => <NewAlbum {...props} /> } />
           <Route exact path="/albums/:id/edit" render={(props) => <EditAlbum {...props} /> } />

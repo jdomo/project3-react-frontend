@@ -39,7 +39,7 @@ class EditAlbum extends Component {
     e.preventDefault();
     // this.props.history.push('/albums') //bad practice
     
-    const editRequest = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/' + this.state.albumToEdit.id, {
+    const editRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${this.state.albumToEdit.id}`, {
       method: 'PUT',
       credentials: 'include',
       body: JSON.stringify(this.state.albumToEdit),

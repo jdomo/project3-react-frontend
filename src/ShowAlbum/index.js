@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import '../App.css'
+import Navbar from '../Navbar'
 
 class ShowAlbum extends Component {
   state = {
@@ -7,7 +9,7 @@ class ShowAlbum extends Component {
 
   getAlbum = async (albumID) => {
     try {
-      const showResponse = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/' + albumID)
+      const showResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${albumID}`)
       const parsedResponse = await showResponse.json();
 
       console.log(parsedResponse, '<-- parsedResponse in getAlbum')
@@ -29,11 +31,25 @@ class ShowAlbum extends Component {
     console.log(this.state, '<--this.state in ShowAlbum')
     return (
       <div>
-        <ul>
-          <li>Artist: {this.state.album.artist}</li>
-          <li>Title: {this.state.album.title}</li>
-          <li><img src={`${this.state.album.image}`} alt='album_cover' /></li>
-        </ul>
+        <Navbar />
+        <div class="main">
+          <div class="container" id="show-page">
+            <div class="box show-page">
+            </div>
+            <div class="box show-page">
+              <p class="album-info">
+                {this.state.album.title}, by {this.state.album.artist}
+              </p>
+              <p>
+                <a href="/albums">Back to all albums</a>
+              </p>
+              <img src={`${this.state.album.image}`} alt='album_cover'/>
+            </div>
+            <div>
+              
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

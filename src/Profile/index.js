@@ -1,56 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Card, Icon} from 'semantic-ui-react';
-class Profile extends Component {
-  state = {
-     id: 1,
-     email: '',
-     image: '',
-     username: '',
-     albums: []
-  }
+import Navbar from '../Navbar'
+import '../App.css'
 
-  componentDidMount() {
-    console.log(this.props, '<-- props in profile')
-    this.props.getUserAlbums();
-    console.log(this.state.albums, '<-- albums in state for user profile')
-    this.albumList = this.state.albums.map(item => {
-      return (
-        <img src={`${item.image}`} alt="album-cover"/>
-      )
-    })
-  }
+const Profile = (props) => {
 
-  albumList = []
-
-  render(){
-    console.log(this.albumList, '<-- albumList')
+  const albumList = props.userInfo.albums.map(item => {
     return (
-      <Grid columns={2} padded style={{ height: '100vh'}}>
-        <Grid.Row>
-          <Grid.Column width={4}>
-            {
-              this.props.userInfo.loading ?
-              'Loading.....' :
+    <div class="box">
+      <img src={`${item.image}`}/>
+    </div>
+    )
+  })
 
-              <Card
-                image={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${this.props.userInfo.image}`}
-                header={this.props.username}
-                meta={this.props.email}
-                description='green eggs and ham'
-                style={{'marginLeft': '5vw'}}
-                />
-             }
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Header as='h2' textAlign='center'>
-              {this.props.userInfo.username}'s Albums
-            </Header>
-            {this.albumList}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-      )
-  }
+  console.log(props.userInfo, '<-- userInfo from props in Profile')
+  console.log(albumList, '<-- albumList in profile')
+  return (
+    <div>
+      <Navbar />
+      <header>
+        {props.userInfo.username}'s Albums
+      </header>
+      <div class="main">
+        <div class="container">
+          {albumList}
+        </div>
+      </div>
+    </div>
+  )
 }
 export default Profile;
