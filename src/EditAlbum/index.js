@@ -23,10 +23,7 @@ class EditAlbum extends Component {
       const showResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${albumID}`)
       const parsedResponse = await showResponse.json();
 
-      console.log(parsedResponse, '<-- parsedResponse in editAlbum')
-
       this.setState({
-        // album: parsedResponse.data
         albumToEdit: parsedResponse.data
       })
 
@@ -37,7 +34,6 @@ class EditAlbum extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    // this.props.history.push('/albums') //bad practice
     
     const editRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${this.state.albumToEdit.id}`, {
       method: 'PUT',
@@ -53,9 +49,7 @@ class EditAlbum extends Component {
     }
 
     const editResponse = await editRequest.json()
-    
-    console.log(editResponse, '<--- editResponse in handleSubmit in editAlbum');
-    
+      
     this.setState({
       submitted: true
     })
@@ -63,11 +57,9 @@ class EditAlbum extends Component {
 
   componentDidMount() {
     this.getAlbum(this.props.match.params.id);
-    console.log('hi from componentDidMount in editAlbum');
   }
 
   render() {
-    console.log(this.state, '<--this.state in EditAlbum component')
     return (
       <div>
         {

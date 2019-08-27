@@ -18,7 +18,6 @@ class Login extends Component {
     const login = this.props.logIn(this.state);
 
     login.then((data) => {
-      console.log(data, '<-- data in login handlesubmit');
       if(data.status.message === 'Success'){
         this.props.history.push('/profile')
       } else {
@@ -30,7 +29,6 @@ class Login extends Component {
 
   }
   render(){
-    console.log(this.state)
     return (
       <div>
         <Navbar />

@@ -15,7 +15,6 @@ class Register extends Component {
     if(e.target.name !== 'image') {
       this.setState({[e.target.name]: e.target.value});
     } else {
-      console.log(e.target.files[0])
       this.setState({image: e.target.files[0]});
     }
   }
@@ -29,7 +28,6 @@ class Register extends Component {
     data.append('password', this.state.password);
     data.append('email', this.state.email);
 
-    console.log(data.entries(), '<-- data from register form');
     for (let pair of data.entries()) {
       console.log(pair[0], ', ', pair[1])
     }

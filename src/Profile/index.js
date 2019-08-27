@@ -14,8 +14,6 @@ const Profile = (props) => {
     )
   })
 
-  console.log(props.userInfo, '<-- userInfo from props in Profile')
-  console.log(albumList, '<-- albumList in profile')
   return (
     <div>
       <Navbar />

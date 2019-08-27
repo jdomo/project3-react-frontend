@@ -11,7 +11,6 @@ import NewAlbum from './NewAlbum'
 import ShowAlbum from './ShowAlbum'
 import EditAlbum from './EditAlbum'
 
-console.log(process.env)
 const my404 = () => {
   return (
     <div>
@@ -31,20 +30,18 @@ class App extends Component {
 
   componentDidMount(){
     const user = JSON.parse(localStorage.getItem("user"))
-    console.log(user, '<-- user in App componentDidMount')
     if(user){
       this.setState({
         ...user,
         loading: false,
+        albums: []
       })
     }
     this.getUserAlbums();
-    console.log('getUserAlbums done')
   }
 
   logIn = async (loginInfo) => {
     try {
-      console.log('from logIn')
       const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
         method: 'POST',                                                 
         credentials: 'include',
@@ -84,7 +81,6 @@ class App extends Component {
       });
 
       const parsedResponse = await registerResponse.json();
-      console.log(parsedResponse, '<-- parsedResponse in register, App.js');
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       this.setState({
         ...parsedResponse.data,
@@ -117,15 +113,12 @@ class App extends Component {
         albums: [...userAlbums]
       })
 
-      console.log(this.state.albums, '<--- albums in App.js state')
-
     } catch (err) {
       console.log(err, '<-- err in getAlbums');
     }
   }
 
   render() {
-    console.log(this.state, '<-- state in App.js')
     return (
       <main>
         <Switch>
