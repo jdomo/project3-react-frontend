@@ -32,26 +32,29 @@ class Login extends Component {
   render(){
     console.log(this.state)
     return (
-      <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
-        <Grid.Column style={{maxWidth: 450}}>
-          <Header as='h2' textAlign='center'>
-            Login
-          </Header>
-          <Form onSubmit={this.handleSubmit}>
-              <Segment stacked>
-              Username:
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
-              Password:
-              <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
-              <Button fluid size='large' type='submit'>Login</Button>
-              <Message>
-                Not a member? <Link to='/'>Register</Link>
-              </Message>
-            </Segment>
-          </Form>
-        </Grid.Column>
-      </Grid>
-      )
+      <div>
+        <Navbar />
+        <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
+          <Grid.Column style={{maxWidth: 450}}>
+            <Header as='h2' textAlign='center'>
+              Login
+            </Header>
+            <Form onSubmit={this.handleSubmit}>
+                <Segment stacked>
+                Username:
+                <Form.Input fluid icon='user' iconPosition='left' placeholder='username' type='text' name='username' onChange={this.handleChange}/>
+                Password:
+                <Form.Input fluid icon='lock' iconPosition='left' placeholder='password' type='password' name='password' onChange={this.handleChange}/>
+                <Button fluid size='large' type='submit'>Login</Button>
+                <Message>
+                  Not a member? <Link to='/'>Register</Link>
+                </Message>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
+      </div>
+    )
   }
 }
 
